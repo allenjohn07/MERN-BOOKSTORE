@@ -1,5 +1,5 @@
 import express from 'express'
-import { PORT } from './config.js'
+// import { PORT } from './config.js'
 import mongoose from 'mongoose'
 import booksRoute from './routes/booksRoute.js'
 import cors from 'cors'
@@ -7,6 +7,7 @@ import 'dotenv/config';
 
 
 const app = express()
+const port = process.env.PORT || 4000;
 
 //Middleware for parsing request body
 app.use(express.json())
@@ -34,8 +35,8 @@ app.use('/books', booksRoute)
 //Connection to mongodb using mongoose
 mongoose.connect(`mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@book-store-db.ifl4kzi.mongodb.net/books-collection?retryWrites=true&w=majority&appName=book-store-db`).then(() => {
     console.log('App connected to database');
-    app.listen(PORT, () => {
-        console.log(`App is listening to port: ${PORT}`);
+    app.listen(port, () => {
+        console.log(`App is listening to port: ${port}`);
     })
 }).catch((error) => {
     console.error(error);
