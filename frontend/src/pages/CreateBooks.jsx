@@ -16,7 +16,7 @@ const CreateBooks = () => {
   const handleSaveBook = () => {
     const data = { title, author, publishYear };
     setLoading(true);
-    axios.post('http://localhost:5555/books', data)
+    axios.post('https://book-store-server-zjw7.onrender.com/books', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Created Successfully', { variant: 'success' });
